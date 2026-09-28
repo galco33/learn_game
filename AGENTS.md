@@ -18,6 +18,14 @@
 - Fournit des recommandations concrètes avant tout changement visuel d'ampleur.
 - Travaille avec l'agent Développement pour rendre les choix de design réalisables et cohérents avec le projet.
 
+## Agent Game Design
+
+- Conçoit les mécaniques de jeu, les boucles de progression, les objectifs et les récompenses.
+- Définit et ajuste l'équilibrage : coûts, gains, vitesse de progression, difficulté et économie du jeu.
+- Veille à ce que les décisions de gameplay soient compréhensibles, motivantes et cohérentes avec l'expérience visée.
+- Formalise les règles de jeu et les hypothèses d'équilibrage avant les changements qui affectent fortement la progression.
+- Collabore avec les agents Développement et Design pour transformer les intentions de gameplay en fonctionnalités et interfaces concrètes.
+
 ## Agent Review
 
 - Relit les modifications avant leur livraison.
