@@ -5,7 +5,7 @@ station de construction, quelques arbres et rochers. Il peut choisir où poser
 ses bâtiments et tracer des routes ; les PNJ marchent d'abord sur l'herbe, mais
 les routes accélèrent ensuite leurs trajets vers les récoltes et les bâtiments.
 
-1. **Une ressource de départ : le bois.** Le joueur commence avec une station de construction, 2 PNJ et quelques arbres. Il peut assigner un PNJ à un arbre, qui produit automatiquement `+1 bois / 3 secondes`.
+1. **Une ressource de départ : le bois.** Le joueur commence avec une station de construction, 2 PNJ et quelques arbres. Il peut assigner un PNJ à un arbre, qui produit automatiquement `+1 bois / 3 secondes`. Chaque PNJ peut être réaffecté à tout moment : par exemple, un PNJ qui récolte le bois peut ensuite aller récolter la pierre.
 2. **Un premier bâtiment : la scierie.** Exemple : 20 bois pour la construire. Une fois construite, elle améliore ou automatise la production de bois.
 3. **Une deuxième ressource : la pierre.** La scierie ou une première amélioration permet de débloquer une carrière. Les PNJ peuvent alors produire de la pierre.
 4. **Quelques bâtiments seulement**, par exemple Maison → augmente le nombre de PNJ ; Scierie → bois ; Carrière → pierre ; Entrepôt → augmente la capacité de stockage. Le joueur les place sur des cases libres, puis les organise avec des routes qui accélèrent les PNJ.

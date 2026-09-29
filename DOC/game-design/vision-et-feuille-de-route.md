@@ -89,6 +89,37 @@ sauf règle contraire explicite. Le jeu met en surbrillance :
 - les cases bloquées, avec une raison claire ;
 - le tracé d'une route ou d'une ligne en cours de placement.
 
+### Légende des schémas et prototypes
+
+Les schémas de conception utilisent les abréviations suivantes. Elles servent
+uniquement à rendre une carte ou un plan compact ; dans le jeu, l'interface
+affichera des icônes et des noms complets.
+
+| Symbole | Signification | Rôle |
+| --- | --- | --- |
+| `A` | Arbre | Lieu de récolte de bois |
+| `R` | Rocher | Lieu de récolte de pierre |
+| `S1` | Station de construction, niveau 1 | Bâtiment initial et point de départ de la ville |
+| `S2` | Station de construction, niveau 2 | Premier palier d'évolution de la ville |
+| `P1`, `P2` | PNJ 1, PNJ 2 | Habitants assignables à une tâche |
+| `Rt` | Route | Case praticable qui accélère les déplacements des PNJ |
+| `Sc` | Scierie | Bâtiment de production automatique de bois |
+| `Ca` | Carrière | Bâtiment qui permet la récolte de pierre |
+| `M` | Maison | Bâtiment qui ajoute un PNJ |
+| `E` | Entrepôt | Bâtiment qui augmente le stockage |
+
+Exemple de départ :
+
+```text
+[A] [A] [ ] [R] [R]
+[ ] [Rt][Rt][Rt][ ]
+[ ] [P1][S1][P2][ ]
+```
+
+Dans cet exemple, `S1` est bien la **station de construction de niveau 1**,
+et non une ressource. Les PNJ partent de cette zone, empruntent les routes si
+elles sont utiles, puis peuvent être affectés aux arbres ou aux rochers.
+
 Le placement doit rester souple : annulation avant validation, suppression ou
 déplacement récupérable pendant le MVP, et aucun coût caché. La caméra doit
 préserver la lecture des bâtiments, même lorsque le village se densifie.
@@ -186,9 +217,24 @@ intéressante, il faut revoir coûts, cadence ou nouveaux choix disponibles.
 
 - Envoyer tous les habitants au bois pour atteindre rapidement un coût, ou
   répartir les travailleurs pour préparer le prochain besoin.
+- Réaffecter librement un PNJ du bois vers la pierre, ou inversement, lorsque
+  le besoin de ressources change.
 - Construire une maison dès que possible, ou privilégier l'entrepôt afin de ne
   pas saturer les stocks.
-- Réassigner un habitant lorsque le goulot d'étranglement change.
+
+### Règle d'affectation des PNJ
+
+Un PNJ possède une tâche active : `sans tâche`, `bois` ou `pierre`. Le joueur
+peut modifier cette tâche à tout moment depuis le PNJ ou le lieu de récolte.
+
+Lors d'un changement bois → pierre (ou pierre → bois), le PNJ termine son action
+en cours si elle est déjà engagée, puis se dirige vers le nouveau lieu de
+récolte. Il ne doit jamais produire les deux ressources simultanément ni
+disparaître de la carte. L'interface doit afficher sa tâche actuelle et le
+nouveau trajet afin que la réaffectation soit immédiatement compréhensible.
+
+La réaffectation ne coûte aucune ressource au MVP. Le seul coût est le temps de
+déplacement ; les routes rendent donc aussi cette décision plus efficace.
 
 ### Retours visuels et sonores à prévoir
 
@@ -235,16 +281,17 @@ le plus tôt possible.
 4. Créer une carte isométrique, avec sélection tactile d'une case, déplacement
    de caméra et affichage des cases libres ou bloquées.
 5. Créer la station de construction, les arbres et les rochers comme objets de
-   carte ; créer l'assignation / désassignation d'un
-   habitant.
+   carte ; créer l'assignation, la désassignation et la réaffectation d'un PNJ
+   entre bois et pierre.
 6. Mettre en place la boucle de production périodique, les déplacements de PNJ
    sur l'herbe et le plafond de capacité de stockage.
 7. Ajouter des tests unitaires pour la production, les capacités, les
-   affectations et la validation d'occupation de la grille.
+   affectations, les réaffectations et la validation d'occupation de la grille.
 
-**Validation :** deux habitants peuvent produire du bois depuis des arbres,
-revenir à la station de construction et la production s'arrête proprement au
-plafond de stockage.
+**Validation :** un PNJ peut passer du bois à la pierre, se rendre vers le bon
+lieu de récolte et ne produire qu'une ressource à la fois. Deux habitants
+peuvent produire du bois depuis des arbres, revenir à la station de
+construction et la production s'arrête proprement au plafond de stockage.
 
 ### Lot 2 — Bâtiments et déblocages
 
